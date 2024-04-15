@@ -1,0 +1,19 @@
+* ❄️ nixos-config 
+
+nixos flake + home-manager for my systems
+you can try any configuration in a vm using `nix build .#nixosConfigurations.hostname.config.system.build.vm`
+
+* 🌐 hosts
+
+- *akemi@timeline*
+    - dell latitude 5490
+    - personal laptop
+    - nixos
+
+- *kyubey@incubator*
+    - asus p8p67-m
+    - homeserver
+    - nixos
+
+
+
