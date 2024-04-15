@@ -1,6 +1,6 @@
 * ❄️ nixos-config 
 
-nixos flake + home-manager for my systems
+nixos flake + home-manager for my systems  
 you can try any configuration in a vm using =nix build .#nixosConfigurations.hostname.config.system.build.vm=
 
 * 🌐 hosts
