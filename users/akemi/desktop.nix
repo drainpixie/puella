@@ -1,3 +1,11 @@
-{ pkgs, inputs, ... }: {
-  home.packages = with pkgs; [ rofi slock cozette tewi-font ];
+{ pkgs, inputs, ... }:
+
+{
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
+      rofi
+      slock
+      cozette
+      tewi-font;
+  };
 }
