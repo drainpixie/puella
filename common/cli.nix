@@ -16,7 +16,7 @@ _: {
     extraOptions = [ "--group-directories-first" "--sort=ext" ];
   };
 
-  programs.ipgrep = {
+  programs.ripgrep = {
     enable = true;
 
     arguments = [ "--hidden" "--smart-case" ];
