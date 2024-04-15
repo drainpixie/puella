@@ -18,8 +18,10 @@
     displayManager = {
       lightdm.enable = true;
 
-      autoLogin.enable = true;
-      autoLogin.user = "akemi";
+      autoLogin = {
+        enable = true;
+        autoLogin.user = "akemi";
+      };
 
       defaultSession = "none+2bwm";
     };

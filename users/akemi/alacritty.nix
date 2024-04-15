@@ -1,6 +1,6 @@
 { pkgs, ... }:
-let my = import ../../common/colours.nix;
-in {
+
+{
   programs.alacritty = {
     enable = true;
     settings = {
@@ -9,15 +9,20 @@ in {
         y = 8;
       };
 
-      colors.primary = my.primary;
-      colors.normal = my.normal;
-      colors.bright = my.bright;
+      colors = {
+        inherit (import ../../common/colours.nix)
+          primary
+          normal
+          bright;
+      };
 
-      font = {
-        normal.family = "tewi";
-        bold.family = "tewi";
-        italic.family = "tewi";
-        bold_italic.family = "tewi";
+      font = let
+        f = "tewi";
+      in {
+        normal.family = f;
+        bold.family = f;
+        italic.family = f;
+        bold_italic.family = f;
       };
     };
   };

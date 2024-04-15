@@ -5,8 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     hardware.url = "github:NixOS/nixos-hardware";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
@@ -16,7 +18,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, wm, hardware, home-manager, ... }@inputs:
+  outputs = {
+    self,
+    nixpkgs,
+    wm,
+    hardware,
+    home-manager,
+    ...
+  }@inputs:
     let
       lib = nixpkgs.lib // home-manager.lib;
 

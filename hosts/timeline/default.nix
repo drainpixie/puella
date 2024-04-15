@@ -5,14 +5,19 @@
   networking.hostName = "timeline";
   powerManagement.enable = true;
 
-  services.tailscale.enable = true;
-  services.upower.enable = true;
+  services = {
+    tailscale.enable = true;
+    upower.enable = true;
+  };
+
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
-      systemd-boot.enable = true;
-      systemd-boot.netbootxyz.enable = true;
+      systemd-boot = {
+        enable = true;
+        netbootxyz.enable = true;
+      };
 
       efi.canTouchEfiVariables = true;
     };

@@ -1,5 +1,9 @@
 { pkgs, ... }: {
-  imports = [ ./hardware.nix ./ssh.nix ../../common/system.nix ];
+  imports = [
+    ./hardware.nix
+    ./ssh.nix
+    ../../common/system.nix
+  ];
 
   networking.hostName = "incubator";
 

@@ -6,29 +6,32 @@
     ../../common/home.nix
   ];
 
-  home = {
+  home = let
     username = "akemi";
-    homeDirectory = "/home/akemi";
+  in {
+    inherit username;
+    homeDirectory = "/home/${username}";
+
+    packages = builtins.attrValues {
+      inherit (pkgs)
+        strace
+        man-pages
+        man-pages-posix
+
+        wget
+        curl
+
+        fd
+        tokei
+        du-dust
+
+        ungoogled-chromium
+        alacritty
+
+        zip
+        unzip;
+    };
   };
-
-  home.packages = with pkgs; [
-    strace
-    man-pages
-    man-pages-posix
-
-    wget
-    curl
-
-    fd
-    tokei
-    du-dust
-
-    ungoogled-chromium
-    alacritty
-
-    zip
-    unzip
-  ];
 
   xdg.userDirs = {
     enable = true;
