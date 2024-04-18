@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = builtins.attrValues {
@@ -6,6 +6,7 @@
       rofi
       slock
       cozette
-      tewi-font;
+      tewi-font
+      spotify;
   };
 }
