@@ -33,7 +33,7 @@
     uid = 1000;
     home = "/home/akemi";
 
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     isNormalUser = true;
     initialPassword = "changeme";
 
