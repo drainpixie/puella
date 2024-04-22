@@ -27,7 +27,10 @@
   };
 
   networking = {
-    nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    nameservers = [
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
     networkmanager.enable = true;
   };
 
@@ -36,10 +39,5 @@
     keyMap = "it";
   };
 
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs)
-      git
-      neovim
-      home-manager;
-  };
+  environment.systemPackages = builtins.attrValues { inherit (pkgs) git neovim home-manager; };
 }

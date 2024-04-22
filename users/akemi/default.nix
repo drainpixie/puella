@@ -1,37 +1,42 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
+    ./neovim
     ./desktop.nix
     ./alacritty.nix
     ../../common/cli.nix
     ../../common/home.nix
   ];
 
-  home = let
-    username = "akemi";
-  in {
-    inherit username;
-    homeDirectory = "/home/${username}";
+  home =
+    let
+      username = "akemi";
+    in
+    {
+      inherit username;
+      homeDirectory = "/home/${username}";
 
-    packages = builtins.attrValues {
-      inherit (pkgs)
-        strace
-        man-pages
-        man-pages-posix
+      packages = builtins.attrValues {
+        inherit (pkgs)
+          strace
+          man-pages
+          man-pages-posix
 
-        wget
-        curl
+          wget
+          curl
 
-        fd
-        tokei
-        du-dust
+          fd
+          tokei
+          du-dust
 
-        ungoogled-chromium
-        alacritty
+          ungoogled-chromium
+          alacritty
 
-        zip
-        unzip;
+          zip
+          unzip
+          ;
+      };
     };
-  };
 
   xdg.userDirs = {
     enable = true;

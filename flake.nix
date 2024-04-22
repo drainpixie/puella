@@ -10,6 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    vim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
     wm = {
@@ -18,31 +23,40 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    wm,
-    hardware,
-    home-manager,
-    ...
-  }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      wm,
+      vim,
+      hardware,
+      home-manager,
+      ...
+    }@inputs:
     let
       lib = nixpkgs.lib // home-manager.lib;
 
-      mkSystem = host:
+      mkSystem =
+        host:
         lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [ ./hosts/${host} ];
         };
 
-      mkHome = user:
+      mkHome =
+        user:
         lib.homeManagerConfiguration {
           pkgs = import nixpkgs { system = "x86_64-linux"; };
 
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {
+            inherit inputs;
+          };
           modules = [ ./users/${user} ];
         };
-    in {
+    in
+    {
       # `nixos-rebuild switch --flake .#hostname`
       nixosConfigurations = {
         timeline = mkSystem "timeline" // {

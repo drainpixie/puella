@@ -7,6 +7,7 @@
       slock
       cozette
       tewi-font
-      spotify;
+      spotify
+      ;
   };
 }

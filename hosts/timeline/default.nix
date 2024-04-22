@@ -1,15 +1,20 @@
-{ pkgs, ... }: {
-  imports =
-    [ ./audio.nix ./xserver.nix ./hardware.nix ../../common/system.nix ];
+{ pkgs, ... }:
+{
+  imports = [
+    ./audio.nix
+    ./xserver.nix
+    ./hardware.nix
+    ../../common/system.nix
+  ];
 
   networking.hostName = "timeline";
   powerManagement.enable = true;
 
+  systemd.services.NetworkManager-wait-online.enable = false;
   services = {
     tailscale.enable = true;
     upower.enable = true;
   };
-
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -28,11 +33,15 @@
     uid = 1000;
     home = "/home/akemi";
 
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
     isNormalUser = true;
     initialPassword = "changeme";
 
-    extraGroups = [ "wheel" "audio" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "audio"
+      "networkmanager"
+    ];
   };
 
   # `slock` needs to disable OOM killer, for some reason.

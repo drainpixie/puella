@@ -1,4 +1,5 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   nixpkgs.overlays = [
     (self: super: {
       _2bwm = super._2bwm.overrideAttrs (_: {
@@ -10,20 +11,18 @@
 
   services.xserver = {
     enable = true;
-
     xkb.layout = "it";
-
     windowManager."2bwm".enable = true;
+  };
 
-    displayManager = {
-      lightdm.enable = true;
+  services.displayManager = {
+    sddm.enable = true;
 
-      autoLogin = {
-        enable = true;
-        autoLogin.user = "akemi";
-      };
-
-      defaultSession = "none+2bwm";
+    autoLogin = {
+      enable = true;
+      user = "akemi";
     };
+
+    defaultSession = "none+2bwm";
   };
 }
