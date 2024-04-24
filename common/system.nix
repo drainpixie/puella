@@ -40,4 +40,5 @@
   };
 
   environment.systemPackages = builtins.attrValues { inherit (pkgs) git neovim home-manager; };
+  time.hardwareClockInLocalTime = true;
 }
