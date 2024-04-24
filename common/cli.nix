@@ -19,13 +19,19 @@ _: {
       enable = true;
       enableBashIntegration = true;
 
-      extraOptions = [ "--group-directories-first" "--sort=ext" ];
+      extraOptions = [
+        "--group-directories-first"
+        "--sort=ext"
+      ];
     };
 
     ripgrep = {
       enable = true;
 
-      arguments = [ "--hidden" "--smart-case" ];
+      arguments = [
+        "--hidden"
+        "--smart-case"
+      ];
     };
 
     bat = {
@@ -40,7 +46,10 @@ _: {
       enable = true;
       enableCompletion = true;
 
-      historyControl = [ "ignorespace" "erasedups" ];
+      historyControl = [
+        "ignorespace"
+        "erasedups"
+      ];
       shellOptions = [
         "histappend"
         "cmdhist"
