@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.ssh = {
     startAgent = true;
     extraConfig = ''
@@ -39,6 +37,6 @@
     keyMap = "it";
   };
 
-  environment.systemPackages = builtins.attrValues { inherit (pkgs) git neovim home-manager; };
+  environment.systemPackages = builtins.attrValues {inherit (pkgs) git neovim home-manager;};
   time.hardwareClockInLocalTime = true;
 }

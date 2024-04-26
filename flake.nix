@@ -23,58 +23,57 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      wm,
-      vim,
-      hardware,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      lib = nixpkgs.lib // home-manager.lib;
+  outputs = {
+    self,
+    nixpkgs,
+    wm,
+    vim,
+    hardware,
+    home-manager,
+    ...
+  } @ inputs: let
+    lib = nixpkgs.lib // home-manager.lib;
 
-      mkSystem =
-        host:
-        lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [ ./hosts/${host} ];
+    mkSystem = host:
+      lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [./hosts/${host}];
+      };
+
+    mkHome = user:
+      lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {system = "x86_64-linux";};
+
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+        modules = [./users/${user}];
+      };
+  in {
+    # `nixos-rebuild switch --flake .#hostname`
+    nixosConfigurations = {
+      timeline =
+        mkSystem "timeline"
+        // {
+          modules = [hardware.nixosModules.dell-latitude-5520];
         };
 
-      mkHome =
-        user:
-        lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
-
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-          modules = [ ./users/${user} ];
-        };
-    in
-    {
-      # `nixos-rebuild switch --flake .#hostname`
-      nixosConfigurations = {
-        timeline = mkSystem "timeline" // {
-          modules = [ hardware.nixosModules.dell-latitude-5520 ];
-        };
-
-        incubator = mkSystem "incubator" // {
+      incubator =
+        mkSystem "incubator"
+        // {
           modules = [
             hardware.nixosModules.common-cpu-intel-sandy-bridge
             hardware.nixosModules.common-pc-hdd
           ];
         };
-      };
-
-      # `home-manager switch --flake .#username@hostname`
-      homeConfigurations = {
-        "akemi@timeline" = mkHome "akemi";
-        "kyubey@incubator" = mkHome "kyubey";
-      };
     };
+
+    # `home-manager switch --flake .#username@hostname`
+    homeConfigurations = {
+      "akemi@timeline" = mkHome "akemi";
+      "kyubey@incubator" = mkHome "kyubey";
+    };
+  };
 }

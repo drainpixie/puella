@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./audio.nix
     ./xserver.nix
@@ -28,7 +27,7 @@
     };
   };
 
-  nix.settings.trusted-users = [ "akemi" ];
+  nix.settings.trusted-users = ["akemi"];
   users.users.akemi = {
     uid = 1000;
     home = "/home/akemi";

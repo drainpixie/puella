@@ -3,10 +3,8 @@
   lib,
   modulesPath,
   ...
-}:
-
-{
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+}: {
+  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   boot = {
     initrd = {
@@ -18,11 +16,11 @@
         "sd_mod"
         "rtsx_pci_sdmmc"
       ];
-      kernelModules = [ ];
+      kernelModules = [];
     };
 
-    kernelModules = [ "kvm-intel" ];
-    extraModulePackages = [ ];
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
   };
 
   fileSystems = {

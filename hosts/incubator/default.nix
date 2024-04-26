@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./hardware.nix
     ./ssh.nix
@@ -18,7 +17,7 @@
     };
   };
 
-  nix.settings.trusted-users = [ "kyubey" ];
+  nix.settings.trusted-users = ["kyubey"];
   users.users.kyubey = {
     uid = 1000;
     home = "/home/akemi";

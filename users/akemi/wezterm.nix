@@ -1,28 +1,26 @@
-_:
-
-{
+_: {
   programs.wezterm = {
     enable = true;
 
     extraConfig = ''
-      		local wezterm = require 'wezterm'
-        	local config = wezterm.config_builder()
-            			
-          -- config.font = wezterm.font('Meslo LG S')
-          config.font_size = 10.0
+      local wezterm = require 'wezterm'
+      	local config = wezterm.config_builder()
 
-          config.window_padding = {
-      			left = 8,
-            right = 8,
-            top = 8,
-            bottom = 8,
-          }
+        -- config.font = wezterm.font('Meslo LG S')
+        config.font_size = 10.0
 
-      		config.front_end = "OpenGL"
-          config.color_scheme = "Gruvbox dark, medium (base16)"
-          config.enable_tab_bar = false
+        config.window_padding = {
+      	left = 8,
+          right = 8,
+          top = 8,
+          bottom = 8,
+        }
 
-          return config
+      config.front_end = "OpenGL"
+        config.color_scheme = "Gruvbox dark, medium (base16)"
+        config.enable_tab_bar = false
+
+        return config
     '';
     # settings = {
     #   window.padding = {
