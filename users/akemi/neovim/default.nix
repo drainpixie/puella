@@ -1,15 +1,25 @@
-{ inputs, ... }:
-{
-  imports = [ inputs.vim.homeManagerModules.nixvim ];
+{inputs, ...}: {
+  imports = [
+    inputs.vim.homeManagerModules.nixvim
+
+    ./lsp.nix
+    ./oil.nix
+    ./lualine.nix
+  ];
 
   programs.nixvim = {
     enable = true;
-    # colorschemes.gruvbox.enable = true;
 
     viAlias = true;
     vimAlias = true;
 
+    clipboard.register = "unnamedplus";
     globals.mapleader = " ";
+
+    colorschemes.gruvbox = {
+      enable = true;
+      settings.contrast_dark = "medium";
+    };
 
     opts = {
       number = true;
@@ -26,6 +36,14 @@
 
       hlsearch = false;
       incsearch = true;
+
+      autoread = true;
+      lazyredraw = true;
+
+      wrap = false;
+      linebreak = true;
+
+      showmode = false;
     };
 
     keymaps = [
@@ -118,18 +136,26 @@
           desc = "Move selected lines up.";
         };
       }
+      {
+        action = ":Oil<CR>";
+        key = "-";
+        mode = "n";
+        options = {
+          desc = "Open parent directory";
+        };
+      }
     ];
 
     plugins = {
       undotree.enable = true;
       telescope.enable = true;
-    };
+      treesitter.enable = true;
+      nvim-autopairs.enable = true;
 
-    autoCmd = [
-      {
-        event = "BufWritePre";
-        command = "lua vim.lsp.buf.formatting_sync()";
-      }
-    ];
+      nvim-colorizer = {
+        enable = true;
+        fileTypes = ["*"];
+      };
+    };
   };
 }

@@ -1,5 +1,5 @@
 diff --git a/config.h b/config.h
-index 0985d2e..60e1c4f 100644
+index 0985d2e..2106a0e 100644
 --- a/config.h
 +++ b/config.h
 @@ -1,223 +1,137 @@
@@ -77,13 +77,13 @@ index 0985d2e..60e1c4f 100644
 +};
 +
 +static const char *colors[] = {
-+    "#F27A9B", // Focus
-+    "#F27A9B", // Unfocused
-+    "#201D2A", // Fixed
-+    "#000000", // Unkillable
-+    "#000000", // Fixed unkillable
-+    "#F6F6F6", // Outer border
-+    "#F6F6F6"  // Empty
++    "#D3869B",	// Focus
++    "#D3869B",	// Unfocused
++    "#201D2A",	// Fixed
++    "#000000",	// Unkillable
++    "#000000",	// Fixed unkillable
++    "#282828",	// Outer border
++    "#282828"		// Empty
 +};
 +
 +
@@ -110,7 +110,7 @@ index 0985d2e..60e1c4f 100644
 - */
 +
 +static const char *lock[] = {"slock", NULL};
-+static const char *terminal[] = {"alacritty", NULL};
++static const char *terminal[] = {"wezterm", NULL};
 +static const char *rofirun[] = {"rofi", "-show", "combi", NULL};
 +static const char *rofiwindow[] = {"rofi", "-show", "window", NULL};
 +// static const char *screenshot[] = {"maim", "-m 10", "-s", "|", "xclip", "-selection clipboard", "-t image/png"};

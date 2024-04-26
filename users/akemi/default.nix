@@ -2,8 +2,8 @@
 {
   imports = [
     ./neovim
+    ./wezterm.nix
     ./desktop.nix
-    ./alacritty.nix
     ../../common/cli.nix
     ../../common/home.nix
   ];
@@ -24,6 +24,7 @@
 
           wget
           curl
+          xclip
 
           fd
           tokei
