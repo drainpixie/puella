@@ -15,14 +15,14 @@
     serviceConfig.Type = "oneshot";
 
     script = ''
-         sleep 2
+           sleep 2
 
-         status="$(${pkgs.tailscale}/bin/tailscale status -json | ${pkgs.jq}/bin/jq -r .BackendState)"
-         if [ $status = "Running" ]; then
-           exit 0
-         fi
+           status="$(${pkgs.tailscale}/bin/tailscale status -json | ${pkgs.jq}/bin/jq -r .BackendState)"
+           if [ $status = "Running" ]; then
+             exit 0
+           fi
 
-      #
+      ${pkgs.tailscale}/bin/tailscale up -authkey tskey-auth-kwFPbonuaw11CNTRL-hQ9SeYMmQeKPd1c9ftCVeKzozjSunGHH
     '';
   };
 
