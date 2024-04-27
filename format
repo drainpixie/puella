@@ -1,6 +1,7 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i bash --pure
-#! nix-shell -p alejandra
+#! nix-shell -p alejandra -p statix
 # vim: set ft=bash:
 
+statix fix
 alejandra **/*
