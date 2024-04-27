@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   imports = [
-    ./neovim
     ./wezterm.nix
     ./desktop.nix
+    ../../common/neovim
     ../../common/cli.nix
     ../../common/home.nix
   ];
