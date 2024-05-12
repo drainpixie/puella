@@ -8,6 +8,7 @@ _: {
         nil_ls.enable = true;
         clangd.enable = true;
         pyright.enable = true;
+        tsserver.enable = true;
       };
     };
 
@@ -41,6 +42,7 @@ _: {
 
           prettier = {
             enable = true;
+            disableTsServerFormatter = true;
             withArgs = ''
               {
               	extra_args = { "--single-quote" },
