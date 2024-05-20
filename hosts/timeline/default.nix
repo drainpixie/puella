@@ -9,6 +9,11 @@
   networking.hostName = "timeline";
   powerManagement.enable = true;
 
+  hardware = {
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
+  };
+
   systemd.services.NetworkManager-wait-online.enable = false;
   services = {
     tailscale.enable = true;
