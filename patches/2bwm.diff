@@ -1,8 +1,8 @@
 diff --git a/config.h b/config.h
-index 0985d2e..2106a0e 100644
+index 0985d2e..07bbe32 100644
 --- a/config.h
 +++ b/config.h
-@@ -1,223 +1,137 @@
+@@ -1,223 +1,136 @@
 -///---User configurable stuff---///
 -///---Modifiers---///
 -#define MOD             XCB_MOD_MASK_4       /* Super/Windows key  or check xmodmap(1) with -pm  defined in /usr/include/xcb/xproto.h */
@@ -73,20 +73,18 @@ index 0985d2e..2106a0e 100644
 +    5, // Outer border
 +    7, // Full border
 +    2, // Magnet border
-+    3// Resize border
++    3  // Resize border
 +};
 +
 +static const char *colors[] = {
-+    "#D3869B",	// Focus
-+    "#D3869B",	// Unfocused
-+    "#201D2A",	// Fixed
-+    "#000000",	// Unkillable
-+    "#000000",	// Fixed unkillable
-+    "#282828",	// Outer border
-+    "#282828"		// Empty
++    "#D3869B", // Focus
++    "#D3869B", // Unfocused
++    "#201D2A", // Fixed
++    "#000000", // Unkillable
++    "#000000", // Fixed unkillable
++    "#282828", // Outer border
++    "#282828"  // Empty
 +};
-+
-+
 +
 +static const bool inverted_colors = false;
 +static const bool resize_by_line = true;
@@ -110,10 +108,11 @@ index 0985d2e..2106a0e 100644
 - */
 +
 +static const char *lock[] = {"slock", NULL};
-+static const char *terminal[] = {"wezterm", NULL};
++static const char *terminal[] = {"kitty", NULL};
 +static const char *rofirun[] = {"rofi", "-show", "combi", NULL};
 +static const char *rofiwindow[] = {"rofi", "-show", "window", NULL};
-+// static const char *screenshot[] = {"maim", "-m 10", "-s", "|", "xclip", "-selection clipboard", "-t image/png"};
++// static const char *screenshot[] = {"maim", "-m 10", "-s", "|", "xclip",
++// "-selection clipboard", "-t image/png"};
 +static const char *screenshot[] = {"screenshot", NULL};
 +
  static const char *sloppy_switch_cmd[] = {};
@@ -326,8 +325,8 @@ index 0985d2e..2106a0e 100644
 +    {MOD, XK_Return, start, {.com = terminal}},
 +    {MOD, XK_d, start, {.com = rofirun}},
 +    {MOD, XK_Print, start, {.com = screenshot}},
-+    
-+    {MOD |SHIFT, XK_p, start, {.com = lock}},
++
++    {MOD | SHIFT, XK_p, start, {.com = lock}},
 +
 +    {MOD, XK_s, toggle_sloppy, {.com = sloppy_switch_cmd}},
 +

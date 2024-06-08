@@ -5,6 +5,7 @@ _: {
       enable = true;
 
       servers = {
+        svelte.enable = true;
         nil_ls.enable = true;
         clangd.enable = true;
         pyright.enable = true;

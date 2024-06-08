@@ -17,6 +17,7 @@
   systemd.services.NetworkManager-wait-online.enable = false;
   services = {
     tailscale.enable = true;
+    logind.lidSwitch = "ignore";
     upower.enable = true;
   };
 

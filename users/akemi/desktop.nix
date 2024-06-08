@@ -1,13 +1,15 @@
 {pkgs, ...}: {
+  fonts.fontconfig.enable = true;
+
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
       rofi
       slock
-      cozette
-      tewi-font
-      meslo-lg
       spotify
+      tewi-font
+      meslo-lgs-nf
+      cozette
       ;
   };
 }
