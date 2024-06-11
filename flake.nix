@@ -111,10 +111,12 @@
       };
     });
 
-    devShells = forAllSystems (system: {
+    devShells = forAllSystems (system: let
+      check = self.checks.${system}.pre-commit-check;
+    in {
       default = nixpkgs.legacyPackages.${system}.mkShell {
-        inherit (self.checks.${system}.pre-commit-check) shellHook;
-        buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+        inherit (check) shellHook;
+        buildInputs = check.enabledPackages;
       };
     });
   };
