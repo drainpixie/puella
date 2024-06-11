@@ -11,8 +11,6 @@ permissions: write-all
 jobs:
   update:
     runs-on: ubuntu-latest
-    # env:
-    #   GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -39,5 +37,5 @@ jobs:
 
       - name: Create pull request
         run: |
-          echo ${{ secrets.FEMBOT_TOKEN }} | gh auth login --with-token
+          echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
           gh pr create -B main -H update/flake --title "build(flake): update inputs" --body "*Automatic action*"
