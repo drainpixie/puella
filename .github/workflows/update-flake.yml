@@ -11,9 +11,8 @@ permissions: write-all
 jobs:
   update:
     runs-on: ubuntu-latest
-    env:
-      # GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
-      GITHUB_TOKEN: $ {{ secrets.GITHUB_TOKEN }}
+    # env:
+    #   GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
