@@ -96,8 +96,26 @@
       "kyubey@incubator" = mkHome "kyubey" "x86_64-linux";
     };
 
-    #checks = {
-    #	pre-commit-check = hooks.lib.run
-    #};
+    checks = forAllSystems (system: let
+      lib = hooks.lib.${system};
+    in {
+      pre-commit-check = lib.run {
+        src = ./.;
+        hooks = {
+          alejandra.enable = true;
+          statix = {
+            enable = true;
+            settings.ignore = ["/.direnv"];
+          };
+        };
+      };
+    });
+
+    devShells = forAllSystems (system: {
+      default = nixpkgs.legacyPackages.${system}.mkShell {
+        inherit (self.checks.${system}.pre-commit-check) shellHook;
+        buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+      };
+    });
   };
 }
