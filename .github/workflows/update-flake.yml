@@ -29,8 +29,8 @@ jobs:
         run: git push -f origin update/flake
 
       - name: Create pull request
-        run: >
-          curl -X POST "${{ env.GITHUB_API_URL }}/repos/${{ env.GITHUB_REPOSITORY }}/pulls"
+        run: |
+          curl -X POST "https://api.github.com/repos/${{ github.repository }}/pulls"
           --fail
           -H "Content-Type: application/json"
           -H "Authorization: Token ${{ secrets.FEMBOT_TOKEN }}"
