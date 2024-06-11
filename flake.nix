@@ -2,6 +2,7 @@
   description = "faye's nixos configuration";
 
   inputs = {
+    hooks.url = "github:cachix/pre-commit-hooks.nix";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     hardware.url = "github:NixOS/nixos-hardware";
 
@@ -15,8 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-
+    # Overlays
     wm = {
       url = "github:venam/2bwm";
       flake = false;
@@ -33,40 +33,55 @@
     nixpkgs,
     wm,
     vim,
+    hooks,
     hardware,
     home-manager,
     ...
   } @ inputs: let
     lib = nixpkgs.lib // home-manager.lib;
 
-    mkSystem = host:
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+
+    forAllSystems = lib.genAttrs systems;
+
+    mkSystem = host: system:
       lib.nixosSystem {
+        inherit system;
+
         specialArgs = {
           inherit inputs;
         };
+
         modules = [./hosts/${host}];
       };
 
-    mkHome = user:
+    mkHome = user: system:
       lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {system = "x86_64-linux";};
+        pkgs = import nixpkgs {inherit system;};
 
         extraSpecialArgs = {
           inherit inputs;
         };
+
         modules = [./users/${user}];
       };
   in {
     # `nixos-rebuild switch --flake .#hostname`
     nixosConfigurations = {
       timeline =
-        mkSystem "timeline"
+        mkSystem "timeline" "x86_64-linux"
         // {
           modules = [hardware.nixosModules.dell-latitude-5520];
         };
 
       incubator =
-        mkSystem "incubator"
+        mkSystem "incubator" "x86_64-linux"
         // {
           modules = [
             hardware.nixosModules.common-cpu-intel-sandy-bridge
@@ -77,8 +92,12 @@
 
     # `home-manager switch --flake .#username@hostname`
     homeConfigurations = {
-      "akemi@timeline" = mkHome "akemi";
-      "kyubey@incubator" = mkHome "kyubey";
+      "akemi@timeline" = mkHome "akemi" "x86_64-linux";
+      "kyubey@incubator" = mkHome "kyubey" "x86_64-linux";
     };
+
+    #checks = {
+    #	pre-commit-check = hooks.lib.run
+    #};
   };
 }
