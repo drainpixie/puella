@@ -4,7 +4,7 @@ _: {
 
   programs.kitty = {
     enable = true;
-    theme = "Gruvbox Material Dark Medium";
+    theme = "Alabaster";
 
     font = {
       name = "Meslo LG S";

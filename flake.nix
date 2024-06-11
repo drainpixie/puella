@@ -11,7 +11,7 @@
     };
 
     vim = {
-      url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim/update_flake_lock_action-main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -19,6 +19,11 @@
 
     wm = {
       url = "github:venam/2bwm";
+      flake = false;
+    };
+
+    alabaster = {
+      url = "github:p00f/alabaster.nvim";
       flake = false;
     };
   };

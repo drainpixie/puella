@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.vim.homeManagerModules.nixvim
 
@@ -6,6 +10,17 @@
     ./lsp.nix
     ./oil.nix
     ./lualine.nix
+  ];
+
+  nixpkgs.overlays = [
+    (self: super: let
+      alabaster = super.vimUtils.buildVimPlugin {
+        name = "alabaster";
+        src = inputs.alabaster;
+      };
+    in {
+      vimPlugins = super.vimPlugins // {inherit alabaster;};
+    })
   ];
 
   programs.nixvim = {
@@ -17,10 +32,7 @@
     clipboard.register = "unnamedplus";
     globals.mapleader = " ";
 
-    colorschemes.gruvbox = {
-      enable = true;
-      settings.contrast_dark = "medium";
-    };
+    colorscheme = "alabaster";
 
     opts = {
       number = true;
@@ -45,6 +57,7 @@
       linebreak = true;
 
       showmode = false;
+      background = "light";
     };
 
     keymaps = [
@@ -151,12 +164,16 @@
       undotree.enable = true;
       telescope.enable = true;
       treesitter.enable = true;
-      nvim-autopairs.enable = true;
 
+      nvim-autopairs.enable = true;
       nvim-colorizer = {
         enable = true;
         fileTypes = ["*"];
       };
+    };
+
+    extraPlugins = builtins.attrValues {
+      inherit (pkgs.vimPlugins) alabaster;
     };
   };
 }
