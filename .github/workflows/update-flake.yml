@@ -36,6 +36,6 @@ jobs:
         run: git push -f origin update/flake
 
       - name: Create pull request
-        run: 'gh pr create -B main -H update/flake --title "build(flake): update inputs"'
+        run: 'gh pr create -B main -H update/flake --title "build(flake): update inputs" --body "*Automatic action*"'
         env:
           GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
