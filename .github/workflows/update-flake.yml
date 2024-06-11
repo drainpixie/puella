@@ -1,0 +1,42 @@
+name: Update flake inputs
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monday updates gang
+    - cron: '0 0 * * 1'
+
+jobs:
+  update:
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Switch branch
+        run: git switch -c update/flake
+
+      - name: Update flake
+        run: nix flake update --commit-lock-file
+
+      - name: Push to repository
+        run: git push -f origin update/flake
+
+      - name: Create pull request
+        run: >
+          curl -X POST "${{ env.GITHUB_API_URL }}/repos/${{ env.GITHUB_REPOSITORY }}/pulls"
+          --fail
+          -H "Content-Type: application/json"
+          -H "Authorization: Token ${{ secrets.FEMBOT_TOKEN }}"
+          -d '{
+               "title": "build(flake): update inputs",
+               "body": "",
+               "base": "main",
+               "head": "update/flake",
+               "assignee": "drainpixie"
+              }' || echo PR already open
