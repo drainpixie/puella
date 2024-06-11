@@ -39,5 +39,5 @@ jobs:
 
       - name: Create pull request
         run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
+          echo ${{ secrets.FEMBOT_TOKEN }} | gh auth login --with-token
           gh pr create -B main -H update/flake --title "build(flake): update inputs" --body "*Automatic action*"
