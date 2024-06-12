@@ -10,6 +10,7 @@ _: {
         clangd.enable = true;
         pyright.enable = true;
         tsserver.enable = true;
+        rust-analyzer.enable = true;
       };
     };
 
