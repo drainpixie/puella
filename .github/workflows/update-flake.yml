@@ -21,21 +21,26 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Configure git
+        env:
+          GITHUB_USER: fembotpixie
+          GITHUB_EMAIL: fembotpixie@users.noreply.github.com
+          GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
+        run: |
+            git remote set-url origin "https://${GITHUB_TOKEN}:x-oauth-basic@github.com/${GITHUB_REPOSITORY}.git";
+            git config --local user.email "${GITHUB_EMAIL}";
+            git config --local user.name "${GITHUB_USER}";
+
       - name: Switch branch
         run: git switch -c update/flake
 
       - name: Update flake
         run: nix flake update --commit-lock-file
-        env:
-          GIT_AUTHOR_NAME: fembotpixie
-          GIT_AUTHOR_EMAIL: fembotpixie@users.noreply.github.com
-          GIT_COMMITTER_NAME: fembotpixie
-          GIT_COMMITTER_EMAIL: fembotpixie@users.noreply.github.com
 
       - name: Push to repository
-        run: git push -f origin update/flake
+        run: git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 
       - name: Create pull request
-        run: |
-          echo ${{ secrets.FEMBOT_TOKEN }} | gh auth login --with-token
-          gh pr create -B main -H update/flake --title "build(flake): update inputs" --body "*Automatic action*"
+        env:
+          GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
+        run: 'gh pr create -B main -t "build(flake): update inputs" -b "*Automatic action*"'
