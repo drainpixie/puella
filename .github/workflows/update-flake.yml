@@ -38,7 +38,7 @@ jobs:
         run: nix flake update --commit-lock-file
 
       - name: Push to repository
-        run: git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+        run: git push -f --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 
       - name: Create pull request
         env:
