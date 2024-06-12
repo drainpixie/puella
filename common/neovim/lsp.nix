@@ -10,7 +10,12 @@ _: {
         clangd.enable = true;
         pyright.enable = true;
         tsserver.enable = true;
-        rust-analyzer.enable = true;
+        rust-analyzer = {
+          enable = true;
+
+          installRustc = false;
+          installCargo = false;
+        };
       };
     };
 
@@ -113,6 +118,7 @@ _: {
         python = ["black"];
         lua = ["stylua"];
         nix = ["alejandra"];
+        rust = ["rustfmt"];
       };
     };
   };
