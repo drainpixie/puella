@@ -9,6 +9,7 @@
     ./cmp.nix
     ./lsp.nix
     ./oil.nix
+    ./git.nix
     ./lualine.nix
   ];
 
