@@ -1,5 +1,5 @@
 diff --git a/config.h b/config.h
-index 0985d2e..07bbe32 100644
+index 0985d2e..6e30cc5 100644
 --- a/config.h
 +++ b/config.h
 @@ -1,223 +1,136 @@
@@ -77,13 +77,13 @@ index 0985d2e..07bbe32 100644
 +};
 +
 +static const char *colors[] = {
-+    "#D3869B", // Focus
-+    "#D3869B", // Unfocused
-+    "#201D2A", // Fixed
++    "#000000", // Focus
++    "#000000", // Unfocused
++    "#f7f7f7", // Fixed
 +    "#000000", // Unkillable
 +    "#000000", // Fixed unkillable
-+    "#282828", // Outer border
-+    "#282828"  // Empty
++    "#f7f7f7", // Outer border
++    "#f7f7f7"  // Empty
 +};
 +
 +static const bool inverted_colors = false;
