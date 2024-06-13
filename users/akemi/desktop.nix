@@ -11,7 +11,6 @@
       # apps
       
       spotify
-      vesktop
       # fonts
       
       tewi-font

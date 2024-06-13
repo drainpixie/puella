@@ -1,11 +1,15 @@
 _: {
   programs.nixvim.plugins.oil = {
     enable = true;
-    settings.columns = [
-      "icon"
-      "permissions"
-      "size"
-      "mtime"
-    ];
+    settings = {
+      columns = [
+        "icon"
+        "permissions"
+        "size"
+        "mtime"
+      ];
+
+      view_options.show_hidden = true;
+    };
   };
 }
