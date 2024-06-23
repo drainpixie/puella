@@ -13,17 +13,6 @@
     ./lualine.nix
   ];
 
-  nixpkgs.overlays = [
-    (self: super: let
-      alabaster = super.vimUtils.buildVimPlugin {
-        name = "alabaster";
-        src = inputs.alabaster;
-      };
-    in {
-      vimPlugins = super.vimPlugins // {inherit alabaster;};
-    })
-  ];
-
   programs.nixvim = {
     enable = true;
 
@@ -158,7 +147,7 @@
     };
 
     extraPlugins = builtins.attrValues {
-      inherit (pkgs.vimPlugins) alabaster;
+      inherit (pkgs.faye) alabaster;
     };
   };
 }

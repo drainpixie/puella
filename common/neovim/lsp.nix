@@ -5,6 +5,7 @@ _: {
       enable = true;
 
       servers = {
+        cmake.enable = true;
         svelte.enable = true;
         nil-ls.enable = true;
         clangd.enable = true;

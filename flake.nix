@@ -12,25 +12,26 @@
     };
 
     vim = {
-      url = "github:nix-community/nixvim/update_flake_lock_action-main";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Overlays
     wm = {
       url = "github:venam/2bwm";
       flake = false;
     };
 
-    alabaster = {
-      url = "github:p00f/alabaster.nvim";
-      flake = false;
+    faye = {
+      url = "github:drainpixie/pkgs";
+      inputs.hooks.follows = "hooks";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
     self,
     nixpkgs,
+    faye,
     wm,
     vim,
     hooks,
@@ -63,13 +64,24 @@
 
     mkHome = user: system:
       lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {inherit system;};
+        pkgs = import nixpkgs {
+          inherit system;
+        };
 
         extraSpecialArgs = {
           inherit inputs;
         };
 
-        modules = [./users/${user}];
+        modules = [
+          ./users/${user}
+          {
+            nixpkgs.overlays = [
+              (self: super: {
+                faye = faye.packages.${super.system};
+              })
+            ];
+          }
+        ];
       };
   in {
     # `nixos-rebuild switch --flake .#hostname`

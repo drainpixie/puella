@@ -35,13 +35,20 @@
     };
   };
 
-  xdg.userDirs = {
+  xdg = {
     enable = true;
 
-    music = "$HOME/msc";
-    desktop = "$HOME/dsk";
-    download = "$HOME/dwl";
-    pictures = "$HOME/img";
-    documents = "$HOME/doc";
+    userDirs = {
+      enable = true;
+
+      music = "$HOME/msc";
+      desktop = "$HOME/dsk";
+      download = "$HOME/dwl";
+      pictures = "$HOME/img";
+      documents = "$HOME/doc";
+    };
+
+    # NixOS unstable for the win! (everything keeps breaking help)
+    configFile."systemd/user/.hm-keep".text = "";
   };
 }

@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "alabaster": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1712159454,
-        "narHash": "sha256-lgnQA1O/uGE21N61SiUq/G+UxPVxk6O6unO69j+rWgA=",
-        "owner": "p00f",
-        "repo": "alabaster.nvim",
-        "rev": "ff1a9e07718506e45b94b2088366c5a8ab1ee1ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "p00f",
-        "repo": "alabaster.nvim",
-        "type": "github"
-      }
-    },
     "devshell": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -35,6 +19,29 @@
       "original": {
         "owner": "numtide",
         "repo": "devshell",
+        "type": "github"
+      }
+    },
+    "faye": {
+      "inputs": {
+        "hooks": [
+          "hooks"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1719160199,
+        "narHash": "sha256-fGLwKoJHNRJ5KZ85zCe6OETjO/juTEBQC2aLcGbuiPU=",
+        "owner": "drainpixie",
+        "repo": "pkgs",
+        "rev": "b0c25083e8096b542e052006c538581257e18bc9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "drainpixie",
+        "repo": "pkgs",
         "type": "github"
       }
     },
@@ -341,7 +348,7 @@
     },
     "root": {
       "inputs": {
-        "alabaster": "alabaster",
+        "faye": "faye",
         "hardware": "hardware",
         "home-manager": "home-manager",
         "hooks": "hooks",
@@ -400,16 +407,23 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1718454495,
         "narHash": "sha256-8e6i50NIoek89e70bUjPn13FacCYffoGlHWdOKPV054=",
         "owner": "nix-community",
         "repo": "nixvim",
         "rev": "13ebca2aa2e0426a1a32af89f96e4c60edb75118",
+=======
+        "lastModified": 1719042662,
+        "narHash": "sha256-xwj8hxu02myIPkNsch/v2NbxuRmuvlcphrbYPECE49c=",
+        "owner": "nix-community",
+        "repo": "nixvim",
+        "rev": "49452662b7b4dd2467cbac19e0f9820d570d8976",
+>>>>>>> 3901a18 (feat: add faye)
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "update_flake_lock_action-main",
         "repo": "nixvim",
         "type": "github"
       }
