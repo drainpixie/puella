@@ -11,11 +11,18 @@
       # apps
       
       spotify
+      obsidian
       # fonts
       
       tewi-font
       meslo-lgs-nf
       cozette
+      ;
+
+    inherit
+      (pkgs.faye)
+      prociono
+      fanwood
       ;
   };
 }
