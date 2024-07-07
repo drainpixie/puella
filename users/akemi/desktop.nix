@@ -10,19 +10,22 @@
       slock
       # apps
       
-      spotify
+      fontforge-gtk
+      pavucontrol
       obsidian
+      spotify
+      blueman
       # fonts
       
-      tewi-font
       meslo-lgs-nf
-      cozette
       ;
 
     inherit
       (pkgs.faye)
       prociono
       fanwood
+      beedii
+      azuki
       ;
   };
 }
