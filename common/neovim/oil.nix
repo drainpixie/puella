@@ -3,7 +3,6 @@ _: {
     enable = true;
     settings = {
       columns = [
-        "icon"
         "permissions"
         "size"
         "mtime"

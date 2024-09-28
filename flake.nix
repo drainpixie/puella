@@ -16,11 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wm = {
-      url = "github:venam/2bwm";
-      flake = false;
-    };
-
     faye = {
       url = "github:drainpixie/pkgs";
       inputs.hooks.follows = "hooks";
@@ -29,14 +24,13 @@
   };
 
   outputs = {
-    self,
-    nixpkgs,
-    faye,
-    wm,
-    vim,
-    hooks,
-    hardware,
     home-manager,
+    hardware,
+    nixpkgs,
+    hooks,
+    self,
+    faye,
+    vim,
     ...
   } @ inputs: let
     lib = nixpkgs.lib // home-manager.lib;

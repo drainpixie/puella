@@ -138,6 +138,7 @@
       undotree.enable = true;
       telescope.enable = true;
       treesitter.enable = true;
+      web-devicons.enable = false;
 
       nvim-autopairs.enable = true;
       nvim-colorizer = {

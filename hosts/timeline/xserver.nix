@@ -1,27 +1,47 @@
-{inputs, ...}: {
-  nixpkgs.overlays = [
-    (self: super: {
-      _2bwm = super._2bwm.overrideAttrs (_: {
-        src = inputs.wm;
-        patches = [../../patches/2bwm.diff];
-      });
-    })
-  ];
-
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   services.xserver = {
     enable = true;
     xkb.layout = "it";
-    windowManager."2bwm".enable = true;
-  };
 
-  services.displayManager = {
-    sddm.enable = true;
-
-    autoLogin = {
-      enable = true;
-      user = "akemi";
+    desktopManager.gnome.enable = true;
+    excludePackages = builtins.attrValues {
+      inherit (pkgs) xterm;
     };
-
-    defaultSession = "none+2bwm";
   };
+
+  environment.gnome.excludePackages = builtins.attrValues {
+    inherit
+      (pkgs)
+      gnome-shell-extensions
+      gnome-initial-setup
+      gnome-text-editor
+      gnome-calendar
+      gnome-contacts
+      gnome-console
+      gnome-weather
+      gnome-photos
+      gnome-music
+      gnome-maps
+      gnome-tour
+      simple-scan
+      epiphany
+      snapshot
+      evince
+      atomix
+      cheese
+      hitori
+      gedit
+      geary
+      iagno
+      totem
+      tali
+      yelp
+      ;
+  };
+
+  services.displayManager.ly.enable = true;
 }

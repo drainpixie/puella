@@ -10,7 +10,7 @@ _: {
         nil-ls.enable = true;
         clangd.enable = true;
         pyright.enable = true;
-        tsserver.enable = true;
+        ts-ls.enable = true;
         rust-analyzer = {
           enable = true;
 
@@ -41,21 +41,27 @@ _: {
 
           black = {
             enable = true;
-            withArgs = ''
-              {
-              	extra_args = { "--fast" },
-              }
-            '';
+
+            settings = {
+              withArgs = ''
+                {
+                	extra_args = { "--fast" },
+                }
+              '';
+            };
           };
 
           prettier = {
             enable = true;
             disableTsServerFormatter = true;
-            withArgs = ''
-              {
-              	extra_args = { "--single-quote" },
-              }
-            '';
+
+            settings = {
+              withArgs = ''
+                {
+                	extra_args = { "--single-quote" },
+                }
+              '';
+            };
           };
 
           stylua.enable = true;
@@ -66,60 +72,63 @@ _: {
     conform-nvim = {
       enable = true;
 
-      formatOnSave = {
-        lspFallback = true;
-        timeoutMs = 500;
-      };
+      settings = {
+        format_on_save = {
+          lspFallback = true;
+          timeoutMs = 500;
+        };
 
-      notifyOnError = true;
+        notify_on_error = true;
 
-      formattersByFt = {
-        html = [
-          [
-            "prettierd"
-            "prettier"
-          ]
-        ];
-        css = [
-          [
-            "prettierd"
-            "prettier"
-          ]
-        ];
-        javascript = [
-          [
-            "prettierd"
-            "prettier"
-          ]
-        ];
-        javascriptreact = [
-          [
-            "prettierd"
-            "prettier"
-          ]
-        ];
-        typescript = [
-          [
-            "prettierd"
-            "prettier"
-          ]
-        ];
-        typescriptreact = [
-          [
-            "prettierd"
-            "prettier"
-          ]
-        ];
-        markdown = [
-          [
-            "prettierd"
-            "prettier"
-          ]
-        ];
-        python = ["black"];
-        lua = ["stylua"];
-        nix = ["alejandra"];
-        rust = ["rustfmt"];
+        formatters_by_ft = {
+          html = [
+            [
+              "prettierd"
+              "prettier"
+            ]
+          ];
+          css = [
+            [
+              "prettierd"
+
+              "prettier"
+            ]
+          ];
+          javascript = [
+            [
+              "prettierd"
+              "prettier"
+            ]
+          ];
+          javascriptreact = [
+            [
+              "prettierd"
+              "prettier"
+            ]
+          ];
+          typescript = [
+            [
+              "prettierd"
+              "prettier"
+            ]
+          ];
+          typescriptreact = [
+            [
+              "prettierd"
+              "prettier"
+            ]
+          ];
+          markdown = [
+            [
+              "prettierd"
+              "prettier"
+            ]
+          ];
+          python = ["black"];
+          lua = ["stylua"];
+          nix = ["alejandra"];
+          rust = ["rustfmt"];
+        };
       };
     };
   };

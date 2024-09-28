@@ -361,8 +361,7 @@
         "home-manager": "home-manager",
         "hooks": "hooks",
         "nixpkgs": "nixpkgs_2",
-        "vim": "vim",
-        "wm": "wm"
+        "vim": "vim"
       }
     },
     "systems": {
@@ -426,22 +425,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixvim",
-        "type": "github"
-      }
-    },
-    "wm": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1714853334,
-        "narHash": "sha256-DOxZOX2X2ecdTGjTmYGByRESzl4ebBQzaryqI8rBZhE=",
-        "owner": "venam",
-        "repo": "2bwm",
-        "rev": "3ef4149e60f71c74bae5f6b983dbec2fda7cfbab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "venam",
-        "repo": "2bwm",
         "type": "github"
       }
     }
