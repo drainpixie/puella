@@ -3,6 +3,7 @@
     ./terminal.nix
     ./desktop.nix
     ./gnome.nix
+    ./games.nix
 
     ../../common/neovim
     ../../common/cli.nix
