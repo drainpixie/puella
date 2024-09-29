@@ -1,3 +1,4 @@
+# TODO: Major refactor, but the server is temporarily defunct so it doesn't matter for now.
 _: {
   services.borgbackup.jobs = let
     directory = "/home/kyubey/borg";

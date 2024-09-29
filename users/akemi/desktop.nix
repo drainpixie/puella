@@ -1,61 +1,118 @@
 {pkgs, ...}: let
-  my = import ../../common/colours.nix;
+  extensions = builtins.attrValues {
+    inherit
+      (pkgs.gnomeExtensions)
+      caffeine
+      impatience
+      launch-new-instance
+      light-style
+      ;
+  };
 in {
   fonts.fontconfig.enable = true;
 
-  home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
-      # utils
-      
-      pinentry-gnome3
-      slock
-      # apps
-      
-      google-chrome
-      pavucontrol
-      obsidian
-      spotify
-      vesktop
-      gparted
-      # fonts
-      
-      meslo-lgs-nf
-      ;
+  home.packages =
+    builtins.attrValues {
+      inherit
+        (pkgs)
+        # utils
+        
+        pinentry-gnome3
+        slock
+        # apps
+        
+        google-chrome
+        pavucontrol
+        obsidian
+        spotify
+        vesktop
+        gparted
+        # fonts
+        
+        meslo-lgs-nf
+        ;
 
-    inherit
-      (pkgs.faye)
-      beedii
-      azuki
-      ;
-  };
+      inherit
+        (pkgs.faye)
+        beedii
+        azuki
+        ;
+    }
+    ++ extensions;
 
-  xresources.properties = {
-    "*.foreground" = my.primary.foreground;
-    "*.background" = my.primary.background;
+  dconf = {
+    enable = true;
 
-    "*.color0" = my.normal.black;
-    "*.color8" = my.bright.black;
+    settings = {
+      # Preferences
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        disabled-extensions = [];
+        enabled-extensions = map (p: p.extensionUuid) extensions;
+      };
 
-    "*.color1" = my.normal.red;
-    "*.color9" = my.bright.red;
-    "*.color2" = my.normal.green;
-    "*.color10" = my.bright.green;
-    "*.color3" = my.normal.yellow;
-    "*.color11" = my.bright.yellow;
+      # Keybindings
+      "org/gnome/desktop/wm/keybindings" = {
+        close = ["<Super>q"];
+        toggle-maximized = ["<Super>m"];
+        toggle-fullscreen = ["<Super>f"];
 
-    "*.color4" = my.normal.blue;
-    "*.color12" = my.bright.blue;
+        move-to-workspace-1 = ["<Shift><Super>1"];
+        move-to-workspace-2 = ["<Shift><Super>2"];
+        move-to-workspace-3 = ["<Shift><Super>3"];
+        move-to-workspace-4 = ["<Shift><Super>4"];
+        move-to-workspace-5 = ["<Shift><Super>5"];
 
-    "*.color5" = my.normal.magenta;
-    "*.color13" = my.bright.magenta;
+        switch-to-workspace-1 = ["<Super>1"];
+        switch-to-workspace-2 = ["<Super>2"];
+        switch-to-workspace-3 = ["<Super>3"];
+        switch-to-workspace-4 = ["<Super>4"];
+        switch-to-workspace-5 = ["<Super>5"];
+      };
 
-    "*.color6" = my.normal.cyan;
-    "*.color14" = my.bright.cyan;
+      "org/gnome/shell/keybindings" = {
+        switch-to-application-1 = [];
+        switch-to-application-2 = [];
+        switch-to-application-3 = [];
+        switch-to-application-4 = [];
+        switch-to-application-5 = [];
+        switch-to-application-6 = [];
+        switch-to-application-7 = [];
+        switch-to-application-8 = [];
+        switch-to-application-9 = [];
+        switch-to-application-10 = [];
+      };
 
-    "*.color7" = my.normal.white;
-    "*.color15" = my.bright.white;
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        ];
+      };
 
-    "*.cursorColor" = my.primary.foreground;
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        binding = "<Super>Return";
+        command = "urxvt";
+        name = "Launch terminal";
+      };
+
+      # TODO: Make it a proper script/plugin whatever
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+        binding = "<Super>j";
+        command = "/home/akemi/dot/sketchpad/notes.sh";
+        name = "Launch notes sketchpad";
+      };
+
+      # UI
+      "org/gnome/desktop/interface" = {
+        font-name = "azuki_font 11";
+      };
+
+      "org/gtk/gtk4/settings/file-chooser" = {
+        show-hidden = true;
+        sort-directories-first = true;
+        view-type = "list";
+      };
+    };
   };
 }

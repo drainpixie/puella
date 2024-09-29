@@ -3,15 +3,16 @@
     ./audio.nix
     ./xserver.nix
     ./hardware.nix
+
     ../../common/system.nix
   ];
 
   networking.hostName = "timeline";
   powerManagement.enable = true;
 
-  hardware = {
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -23,11 +24,7 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
-      systemd-boot = {
-        enable = true;
-        netbootxyz.enable = true;
-      };
-
+      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
   };
@@ -37,6 +34,7 @@
     uid = 1000;
     home = "/home/akemi";
 
+    # TODO: Zsh
     shell = pkgs.bash;
     isNormalUser = true;
     initialPassword = "changeme";
@@ -49,15 +47,13 @@
   };
 
   # `slock` needs to disable OOM killer, for some reason.
-  security.wrappers = {
-    slock = {
-      setuid = true;
+  security.wrappers.slock = {
+    setuid = true;
 
-      owner = "root";
-      group = "root";
+    owner = "root";
+    group = "root";
 
-      source = "${pkgs.slock}/bin/slock";
-    };
+    source = "${pkgs.slock}/bin/slock";
   };
 
   system.stateVersion = "23.11";
