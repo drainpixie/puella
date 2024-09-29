@@ -23,14 +23,29 @@ in {
       };
 
       # Keybindings
+      "org/gnome/desktop/wm/keybindings" = {
+        close = ["<Super>q"];
+        toggle-maximized = ["<Super>m"];
+      };
+
       "org/gnome/settings-daemon/plugins/media-keys" = {
-        custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        ];
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>Return";
         command = "urxvt";
         name = "Launch terminal";
+      };
+
+      # TODO: Make it a proper script/plugin whatever
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+        binding = "<Super>j";
+        command = "/home/akemi/dot/sketchpad/notes.sh";
+        name = "Launch notes sketchpad";
       };
 
       # UI
