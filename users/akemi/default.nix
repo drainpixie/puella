@@ -9,6 +9,7 @@
     ../../common/cli.nix
     ../../common/tmux.nix
     ../../common/home.nix
+    ../../common/vscode.nix
   ];
 
   home = let

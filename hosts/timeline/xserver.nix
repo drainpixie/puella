@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   services.xserver = {
     enable = true;
     xkb.layout = "it";
@@ -13,6 +9,7 @@
     };
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.gnome.excludePackages = builtins.attrValues {
     inherit
       (pkgs)
