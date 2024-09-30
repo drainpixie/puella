@@ -70,6 +70,7 @@ _: {
         c = "clear";
         cd = "z";
         mkdir = "mkdir -pv";
+        koji = "koji -e true -a true";
 
         # humanise output
         df = "df -h";
