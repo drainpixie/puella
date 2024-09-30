@@ -12,11 +12,6 @@
       delta.enable = true;
     };
 
-    ssh = {
-      enable = true;
-      # TODO: figure out some agenix stuff...
-    };
-
     urxvt = {
       enable = true;
       fonts = [
@@ -42,6 +37,12 @@
       wget
       curl
       fd
+      ;
+
+    inherit
+      (pkgs.faye)
+      gign
+      kc
       ;
   };
 }
