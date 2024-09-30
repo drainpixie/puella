@@ -16,7 +16,13 @@
         "sd_mod"
         "rtsx_pci_sdmmc"
       ];
+
       kernelModules = [];
+
+      luks.devices."encrypted" = {
+        device = "/dev/disk/by-label/ENCRYPTED";
+        preLVM = true;
+      };
     };
 
     kernelModules = ["kvm-intel"];
@@ -32,6 +38,13 @@
     "/boot" = {
       device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
+    };
+
+    "/media/backup" = {
+      device = "/dev/disk/by-label/BACKUP";
+      fsType = "ext4";
+
+      options = ["user" "rw"];
     };
   };
 

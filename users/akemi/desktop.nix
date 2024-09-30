@@ -4,8 +4,9 @@
       (pkgs.gnomeExtensions)
       caffeine
       impatience
-      launch-new-instance
       light-style
+      appindicator
+      launch-new-instance
       ;
   };
 in {
@@ -27,6 +28,7 @@ in {
         spotify
         vesktop
         gparted
+        zoom-us
         # fonts
         
         meslo-lgs-nf
@@ -113,6 +115,8 @@ in {
         sort-directories-first = true;
         view-type = "list";
       };
+
+      "org/gtk/settings/debug".enable-inspector-keybinding = true;
     };
   };
 }

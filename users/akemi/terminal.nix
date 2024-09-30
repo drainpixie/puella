@@ -8,6 +8,8 @@
         color.ui = "auto";
         pull.rebase = true;
       };
+
+      delta.enable = true;
     };
 
     ssh = {

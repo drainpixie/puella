@@ -2,7 +2,10 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  # Note, this is a one-shot. No, you're not smart.
+  key = "tskey-auth-";
+in {
   services.tailscale.enable = true;
 
   systemd.services.tailscale-autoconnect = {
@@ -15,14 +18,14 @@
     serviceConfig.Type = "oneshot";
 
     script = ''
-           sleep 2
+         sleep 2
+         status="$(${pkgs.tailscale}/bin/tailscale status -json | ${pkgs.jq}/bin/jq -r .BackendState)"
 
-           status="$(${pkgs.tailscale}/bin/tailscale status -json | ${pkgs.jq}/bin/jq -r .BackendState)"
-           if [ $status = "Running" ]; then
-             exit 0
-           fi
+         if [ $status = "Running" ]; then
+         	exit 0
+         fi
 
-      ${pkgs.tailscale}/bin/tailscale up -authkey tskey-auth-kwFPbonuaw11CNTRL-hQ9SeYMmQeKPd1c9ftCVeKzozjSunGHH
+      ${pkgs.tailscale}/bin/tailscale up -authkey ${key}
     '';
   };
 

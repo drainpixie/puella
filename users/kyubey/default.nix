@@ -1,11 +1,9 @@
 {pkgs, ...}: {
   imports = [
-    ./borg.nix
     ./tailscale.nix
 
     ../../common/neovim
     ../../common/cli.nix
-    ../../common/tmux.nix
     ../../common/home.nix
   ];
 
