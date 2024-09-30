@@ -72,7 +72,32 @@ _: {
         mode = "symbol";
 
         symbolMap = {
-          Copilot = "";
+          Copilot = "「Ai」";
+          Text = "「Te」";
+          Method = "「Me」";
+          Function = "「Fu」";
+          Constructor = "「Co」";
+          Field = "「Fi」";
+          Variable = "「Va」";
+          Class = "「Cl」";
+          Interface = "「In」";
+          Module = "「Mo」";
+          Property = "「Pr」";
+          Unit = "「Un」";
+          Value = "「Va」";
+          Enum = "「En」";
+          Keyword = "「Ke」";
+          Snippet = "「Sn」";
+          Color = "「Cl」";
+          File = "「Fl」";
+          Reference = "「eR」";
+          Folder = "「Fo」";
+          EnumMember = "「En」";
+          Constant = "「Cn」";
+          Struct = "「St」";
+          Event = "「Ev」";
+          Operator = "「Op」";
+          TypeParameter = "「Ty」";
         };
 
         extraOptions = {

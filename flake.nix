@@ -48,7 +48,6 @@
     mkSystem = host: system:
       lib.nixosSystem {
         inherit system;
-
         specialArgs = {
           inherit inputs;
         };
