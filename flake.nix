@@ -16,6 +16,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    spicetify = {
+      url = "github:/Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     faye = {
       url = "github:drainpixie/pkgs";
       inputs.hooks.follows = "hooks";
@@ -25,6 +30,7 @@
 
   outputs = {
     home-manager,
+    spicetify,
     hardware,
     nixpkgs,
     hooks,

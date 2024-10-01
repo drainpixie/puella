@@ -4,6 +4,7 @@ in {
   imports = [
     ./terminal.nix
     ./desktop.nix
+    ./spotify.nix
     ./games.nix
 
     ../../common/neovim

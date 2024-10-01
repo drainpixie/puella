@@ -7,6 +7,7 @@
       light-style
       appindicator
       launch-new-instance
+      rounded-window-corners
       ;
   };
 in {
@@ -25,7 +26,6 @@ in {
         google-chrome
         pavucontrol
         obsidian
-        spotify
         vesktop
         gparted
         zoom-us
