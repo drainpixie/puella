@@ -48,8 +48,8 @@ jobs:
           git checkout -B update/flake
 
       - name: Update flake
-        run: nix flake update --commit-lock-file
-
+        run: "nix --option commit-lockfile-summary 'chore: update lock' flake update --commit-lock-file"
+        
       - name: Push to repository
         run: git push -f --set-upstream origin update/flake
 
