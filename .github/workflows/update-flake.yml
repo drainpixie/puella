@@ -56,4 +56,4 @@ jobs:
       - name: Create pull request
         env:
           GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
-        run: 'gh pr create -B main -t "build(flake): update inputs" -b "*Automatic action*" --force'
+        run: 'gh pr create -B main -t "build(flake): update inputs" -b "*Automatic action*"'
