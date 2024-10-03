@@ -3,7 +3,6 @@ name: Update flake inputs
 on:
   workflow_dispatch:
   schedule:
-    # Monday updates gang
     - cron: '0 0 * * 1'
 
 permissions: write-all
@@ -31,16 +30,30 @@ jobs:
             git config --local user.email "${GITHUB_EMAIL}";
             git config --local user.name "${GITHUB_USER}";
 
+      - name: Handle existing PRs
+        env:
+          GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
+        run: |
+          existing_prs=$(gh pr list --search "build(flake): update inputs in:title" --state open --json number,url --jq '.[].number')
+          
+          if [ ! -z "$existing_prs" ]; then
+            for pr in $existing_prs; do
+              gh pr close $pr --comment "*Closing in favor of a new update PR*"
+            done
+          fi
+
       - name: Switch branch
-        run: git switch -c update/flake
+        run: |
+          git fetch origin
+          git checkout -B update/flake
 
       - name: Update flake
         run: nix flake update --commit-lock-file
 
       - name: Push to repository
-        run: git push -f --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+        run: git push -f --set-upstream origin update/flake
 
       - name: Create pull request
         env:
           GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
-        run: 'gh pr create -B main -t "build(flake): update inputs" -b "*Automatic action*"'
+        run: 'gh pr create -B main -t "build(flake): update inputs" -b "*Automatic action*" --force'
