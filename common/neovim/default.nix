@@ -27,6 +27,7 @@
     opts = {
       number = true;
       relativenumber = true;
+      termguicolors = true;
 
       smartindent = true;
       softtabstop = 2;

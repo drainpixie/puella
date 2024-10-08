@@ -80,55 +80,24 @@ _: {
 
         notify_on_error = true;
 
-        formatters_by_ft = {
-          html = [
-            [
-              "prettierd"
-              "prettier"
-            ]
-          ];
-          css = [
-            [
-              "prettierd"
+        formatters_by_ft =
+          {
+            python = ["black"];
+            lua = ["stylua"];
+            nix = ["alejandra"];
+            rust = ["rustfmt"];
+          }
+          // builtins.listToAttrs (map (ft: {
+              # TODO: Move to Biome.
+              name = ft;
+              value = {
+                __unkeyed-1 = "prettierd";
+                __unkeyed-2 = "prettier";
 
-              "prettier"
-            ]
-          ];
-          javascript = [
-            [
-              "prettierd"
-              "prettier"
-            ]
-          ];
-          javascriptreact = [
-            [
-              "prettierd"
-              "prettier"
-            ]
-          ];
-          typescript = [
-            [
-              "prettierd"
-              "prettier"
-            ]
-          ];
-          typescriptreact = [
-            [
-              "prettierd"
-              "prettier"
-            ]
-          ];
-          markdown = [
-            [
-              "prettierd"
-              "prettier"
-            ]
-          ];
-          python = ["black"];
-          lua = ["stylua"];
-          nix = ["alejandra"];
-          rust = ["rustfmt"];
-        };
+                stop_after_first = true;
+              };
+            })
+            ["html" "css" "javascript" "javascriptreact" "typescript" "typescriptreact" "markdown"]);
       };
     };
   };

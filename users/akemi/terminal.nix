@@ -14,15 +14,23 @@
 
     urxvt = {
       enable = true;
+      iso14755 = false;
+
       fonts = [
         "xft:azuki_font:size=12:antialias=true"
       ];
 
-      scroll.bar.enable = false;
+      keybindings = {
+        "Shift-Control-C" = "eval:selection_to_clipboard";
+        "Shift-Control-V" = "eval:paste_clipboard";
+      };
 
       extraConfig = {
         internalBorder = 16;
+        iso14755_52 = false;
       };
+
+      scroll.bar.enable = false;
     };
   };
 

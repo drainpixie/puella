@@ -1,6 +1,6 @@
 _: {
   programs.nixvim.plugins.lualine = {
-    enable = false; # Vibing with the default bar recently
+    enable = true; # Vibing with the default bar recently
     settings = {
       globalstatus = true;
 

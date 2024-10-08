@@ -23,6 +23,7 @@ in {
         slock
         # apps
         
+        signal-desktop
         google-chrome
         pavucontrol
         obsidian
