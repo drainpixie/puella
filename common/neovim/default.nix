@@ -19,9 +19,7 @@
     viAlias = true;
     vimAlias = true;
 
-    clipboard.register = "unnamedplus";
     globals.mapleader = " ";
-
     colorscheme = "alabaster";
 
     opts = {
@@ -134,6 +132,22 @@
         options.desc = "Open parent directory";
       }
     ];
+
+    clipboard = {
+      register = "unnamedplus";
+
+      providers.wl-copy = {
+        enable = true;
+        package = pkgs.wl-clipboard;
+      };
+    };
+
+    performance.byteCompileLua = {
+      enable = true;
+      configs = true;
+      plugins = true;
+      nvimRuntime = true;
+    };
 
     plugins = {
       undotree.enable = true;
