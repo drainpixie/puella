@@ -3,7 +3,7 @@ name: Update flake inputs
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: "0 0 * * 1"
 
 permissions: write-all
 
@@ -26,16 +26,16 @@ jobs:
           GITHUB_EMAIL: fembotpixie@users.noreply.github.com
           GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
         run: |
-            git remote set-url origin "https://${GITHUB_TOKEN}:x-oauth-basic@github.com/${GITHUB_REPOSITORY}.git";
-            git config --local user.email "${GITHUB_EMAIL}";
-            git config --local user.name "${GITHUB_USER}";
+          git remote set-url origin "https://${GITHUB_TOKEN}:x-oauth-basic@github.com/${GITHUB_REPOSITORY}.git";
+          git config --local user.email "${GITHUB_EMAIL}";
+          git config --local user.name "${GITHUB_USER}";
 
       - name: Handle existing PRs
         env:
           GITHUB_TOKEN: ${{ secrets.FEMBOT_TOKEN }}
         run: |
-          existing_prs=$(gh pr list --search "build(flake): update inputs in:title" --state open --json number,url --jq '.[].number')
-          
+          existing_prs=$(gh pr list --search "build(flake): 🔒 update inputs in:title" --state open --json number,url --jq '.[].number')
+
           if [ ! -z "$existing_prs" ]; then
             for pr in $existing_prs; do
               gh pr close $pr --comment "*Closing in favor of a new update PR*"
@@ -49,7 +49,7 @@ jobs:
 
       - name: Update flake
         run: "nix --option commit-lockfile-summary 'chore: update lock' flake update --commit-lock-file"
-        
+
       - name: Push to repository
         run: git push -f --set-upstream origin update/flake
 
