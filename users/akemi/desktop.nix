@@ -27,9 +27,9 @@ in {
         google-chrome
         pavucontrol
         obsidian
+        zathura
         vesktop
         gparted
-        zoom-us
         # fonts
         
         meslo-lgs-nf
