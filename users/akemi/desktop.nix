@@ -20,7 +20,6 @@ in {
         # utils
         
         pinentry-gnome3
-        slock
         # apps
         
         signal-desktop

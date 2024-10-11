@@ -46,15 +46,5 @@
     ];
   };
 
-  # `slock` needs to disable OOM killer, for some reason.
-  security.wrappers.slock = {
-    setuid = true;
-
-    owner = "root";
-    group = "root";
-
-    source = "${pkgs.slock}/bin/slock";
-  };
-
   system.stateVersion = "23.11";
 }
