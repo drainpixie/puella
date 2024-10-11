@@ -30,6 +30,8 @@ in {
         zathura
         vesktop
         gparted
+        nsxiv
+        mpv
         # fonts
         
         meslo-lgs-nf
@@ -42,6 +44,19 @@ in {
         ;
     }
     ++ extensions;
+
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = "google-chrome.desktop";
+    "text/plain" = "code.desktop";
+
+    "application/pdf" = "zathura.desktop";
+    "application/epub+zip" = "zathura.desktop";
+
+    "image/*" = "nsxiv.desktop";
+    "video/*" = "mpv.desktop";
+  };
+
+  #
 
   dconf = {
     enable = true;
@@ -95,7 +110,7 @@ in {
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>Return";
-        command = "urxvt";
+        command = "alacritty";
         name = "Launch terminal";
       };
 
