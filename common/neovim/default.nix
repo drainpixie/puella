@@ -131,6 +131,12 @@
         mode = "n";
         options.desc = "Open parent directory";
       }
+      {
+        action = ":ConjureRepl<CR>";
+        key = "<leader>cr";
+        mode = "n";
+        options.desc = "Open Conjure REPL";
+      }
     ];
 
     clipboard = {

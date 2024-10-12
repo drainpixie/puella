@@ -1,16 +1,19 @@
 _: {
   programs.nixvim.plugins = {
     lsp-format.enable = true;
+    conjure.enable = true;
+
     lsp = {
       enable = true;
 
       servers = {
         cmake.enable = true;
+        ts-ls.enable = true;
         svelte.enable = true;
         nil-ls.enable = true;
         clangd.enable = true;
         pyright.enable = true;
-        ts-ls.enable = true;
+        clojure-lsp.enable = true;
         rust-analyzer = {
           enable = true;
 
