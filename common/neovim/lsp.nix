@@ -39,6 +39,7 @@ _: {
         };
 
         formatting = {
+          just.enable = true;
           alejandra.enable = true;
           clang_format.enable = true;
 
@@ -78,7 +79,7 @@ _: {
       settings = {
         format_on_save = {
           lspFallback = true;
-          timeoutMs = 500;
+          timeoutMs = 1500;
         };
 
         notify_on_error = true;
@@ -89,6 +90,7 @@ _: {
             lua = ["stylua"];
             nix = ["alejandra"];
             rust = ["rustfmt"];
+            just = ["just"];
           }
           // builtins.listToAttrs (map (ft: {
               # TODO: Move to Biome.

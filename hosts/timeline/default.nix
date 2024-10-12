@@ -7,6 +7,12 @@
     ../../common/system.nix
   ];
 
+  environment.systemPackages = [pkgs.docker-compose];
+  virtualisation.docker = {
+    enable = true;
+    autoPrune.enable = true;
+  };
+
   networking.hostName = "timeline";
   powerManagement.enable = true;
 
@@ -42,6 +48,7 @@
     extraGroups = [
       "wheel"
       "audio"
+      "docker"
       "networkmanager"
     ];
   };

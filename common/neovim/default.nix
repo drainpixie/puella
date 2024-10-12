@@ -132,7 +132,13 @@
         options.desc = "Open parent directory";
       }
       {
-        action = ":ConjureRepl<CR>";
+        action = ":ToggleTerm direction=float size=0.5<CR>";
+        key = ",";
+        mode = "n";
+        options.desc = "Open terminal";
+      }
+      {
+        action = ":ConjureConnect<CR>";
         key = "<leader>cr";
         mode = "n";
         options.desc = "Open Conjure REPL";
@@ -159,6 +165,7 @@
       undotree.enable = true;
       telescope.enable = true;
       treesitter.enable = true;
+      toggleterm.enable = true;
       web-devicons.enable = false;
 
       nvim-autopairs.enable = true;
