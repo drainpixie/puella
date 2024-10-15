@@ -23,6 +23,7 @@ in {
         # apps
         
         signal-desktop
+        telegram-desktop
         google-chrome
         pavucontrol
         obsidian
