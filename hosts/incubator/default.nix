@@ -21,7 +21,7 @@
   nix.settings.trusted-users = ["kyubey"];
   users.users.kyubey = {
     uid = 1000;
-    home = "/home/akemi";
+    home = "/home/kyubey";
 
     shell = pkgs.bash;
     isNormalUser = true;
@@ -30,8 +30,8 @@
     extraGroups = [
       "wheel"
       "networkmanager"
-      "minecraft"
     ];
+
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGjrd3Drz463j6IpRJzPIm+KczyhYE7upw7rjlGTlMnJ drainpixie"
     ];
