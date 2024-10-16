@@ -173,6 +173,11 @@
         enable = true;
         fileTypes = ["*"];
       };
+
+      neocord = {
+        enable = true;
+        settings.logo = "https://assets.imgix.net/~text?w=100&h=100&bg=e9eb93";
+      };
     };
 
     extraPlugins = builtins.attrValues {
