@@ -17,7 +17,7 @@
       iso14755 = false;
 
       fonts = [
-        "xft:azuki_font:size=12:antialias=true"
+        "Drafting Mono"
       ];
 
       keybindings = {
@@ -43,10 +43,8 @@
           };
         };
         font = {
-          normal = {
-            family = "azuki_font";
-          };
-          size = 12;
+          normal.family = "Drafting Mono Extra Light";
+          size = 10;
         };
 
         keyboard = {

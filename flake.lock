@@ -31,11 +31,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1727730205,
-        "narHash": "sha256-0YqgnTYl2lv1Ggz4RQeslOnOjj98hjghD45IycGMlJo=",
+        "lastModified": 1729171390,
+        "narHash": "sha256-1XsIDYF9HQWmfdIWSIV75pwc9eFKC8qDT+bRmA+NTUI=",
         "owner": "drainpixie",
         "repo": "pkgs",
-        "rev": "e79bcc9cf29474cae8d4d6424a076bbec965dfce",
+        "rev": "77e69e9e5c4380b4732f63d45b1d51a6549225c7",
         "type": "github"
       },
       "original": {

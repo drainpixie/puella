@@ -39,6 +39,7 @@ in {
 
       inherit
         (pkgs.faye)
+        drafting-mono
         beedii
         azuki
         ;
@@ -123,7 +124,7 @@ in {
 
       # UI
       "org/gnome/desktop/interface" = {
-        font-name = "azuki_font 11";
+        font-name = "Drafting Mono Extra Light 10";
       };
 
       "org/gtk/gtk4/settings/file-chooser" = {

@@ -3,7 +3,6 @@
   config,
   ...
 }: let
-  # Note, this is a one-shot. No, you're not smart.
   key = "tskey-auth-";
 in {
   services.tailscale.enable = true;
